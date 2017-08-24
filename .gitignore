@@ -22,5 +22,5 @@
 hs_err_pid*
 
 # DIY
-.idea/
-*.iml
+.idea
+target
