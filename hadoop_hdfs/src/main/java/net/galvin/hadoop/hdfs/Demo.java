@@ -21,6 +21,7 @@ public class Demo {
     public static void main(String[] args) {
         Logging.info("starting to process");
         Configuration configuration = new Configuration();
+        configuration.set("fs.hdfs.impl","org.apache.hadoop.hdfs.DistributedFileSystem");
         FileSystem fileSystem = null;
         FSDataOutputStream fsDataOutputStream = null;
         FSDataInputStream fsDataInputStream = null;
@@ -37,7 +38,7 @@ public class Demo {
             //创建一个文件test.txt，并且写入内容
             fsDataOutputStream = fileSystem.create(new Path("/temp/test.txt"));
             for(int i=0; i<1000; i++){
-                fsDataOutputStream.write(("Hello World! This is test. This is line "+(i+1)).getBytes());
+                fsDataOutputStream.write(("Hello World! This is test. This is line "+(i+1)+"\n").getBytes());
             }
             fsDataOutputStream.flush();
 
