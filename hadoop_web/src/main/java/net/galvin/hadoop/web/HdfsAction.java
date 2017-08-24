@@ -1,5 +1,7 @@
 package net.galvin.hadoop.web;
 
+import com.alibaba.fastjson.JSON;
+import com.google.gson.JsonArray;
 import net.galvin.hadoop.comm.hdfs.HdfsService;
 import net.galvin.hadoop.comm.utils.Logging;
 import org.apache.hadoop.fs.FileStatus;
@@ -28,12 +30,12 @@ public class HdfsAction {
     @ResponseBody
     public Object listDir(HttpServletRequest request, HttpServletResponse response){
         String dirName = request.getParameter("dirName");
-        List<FileStatus> fileStatusList = hdfsService.listDir(dirName);
         List<String> fileList = new ArrayList<String>();
+        List<FileStatus> fileStatusList = hdfsService.listDir(dirName);
         for(FileStatus fileStatus : fileStatusList){
             fileList.add(fileStatus.toString());
         }
-        return fileList;
+        return JSON.toJSONString(fileList);
     }
 
 }
