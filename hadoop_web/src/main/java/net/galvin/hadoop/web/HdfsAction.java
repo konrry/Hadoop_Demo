@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class HdfsAction {
 
     @RequestMapping("/listDir")
     @ResponseBody
-    public Object listDir(HttpServletRequest request){
+    public Object listDir(HttpServletRequest request, HttpServletResponse response){
         String dirName = request.getParameter("dirName");
         List<FileStatus> fileStatusList = hdfsService.listDir(dirName);
         List<String> fileList = new ArrayList<String>();
