@@ -1,8 +1,5 @@
 package net.galvin.hadoop.comm.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Created by Administrator on 2017/8/24.
  */

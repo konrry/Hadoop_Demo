@@ -7,5 +7,4 @@ public class Constant {
 
     public final static String HDFS_URL="hdfs://master.hadoop.net:9000";
 
-
 }

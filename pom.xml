@@ -13,6 +13,7 @@
     <modules>
         <module>hadoop_comm</module>
         <module>hadoop_hdfs</module>
+        <module>hadoop_web</module>
     </modules>
 
 </project>
