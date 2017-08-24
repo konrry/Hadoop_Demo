@@ -26,7 +26,13 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+			</list>
+		</property>
+	</bean>
 
 
 
