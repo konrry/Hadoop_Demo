@@ -26,10 +26,21 @@
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+	<!-- JSON转换器 -->
+	<bean id="jsonConverter"
+		  class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes">
+			<list>
+				<value>text/html;charset=UTF-8</value>
+				<value>application/json; charset=UTF-8</value>
+			</list>
+		</property>
+	</bean>
+	<!-- Client -->
+	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<property name="messageConverters">
 			<list>
-				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+				<ref bean="jsonConverter" />
 			</list>
 		</property>
 	</bean>
