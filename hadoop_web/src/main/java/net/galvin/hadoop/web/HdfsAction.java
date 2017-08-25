@@ -24,18 +24,17 @@ public class HdfsAction {
 
     @Autowired
     private HdfsService hdfsService;
-
-
+    
     @RequestMapping("/listDir")
     @ResponseBody
-    public Object listDir(HttpServletRequest request, HttpServletResponse response){
+    public List<String> listDir(HttpServletRequest request, HttpServletResponse response){
         String dirName = request.getParameter("dirName");
         List<String> fileList = new ArrayList<String>();
         List<FileStatus> fileStatusList = hdfsService.listDir(dirName);
         for(FileStatus fileStatus : fileStatusList){
             fileList.add(fileStatus.toString());
         }
-        return JSON.toJSONString(fileList);
+        return fileList;
     }
 
 }
