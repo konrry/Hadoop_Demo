@@ -40,10 +40,10 @@ public class HdfsAction {
 
     @RequestMapping("/cat")
     @ResponseBody
-    public List<String> cat(HttpServletRequest request, HttpServletResponse response){
+    public Object cat(HttpServletRequest request, HttpServletResponse response){
         String fileName = request.getParameter("fileName");
-        List<String> contentList = hdfsService.cat(fileName);
-        return contentList;
+        String content = hdfsService.cat(fileName);
+        return content;
     }
 
 }

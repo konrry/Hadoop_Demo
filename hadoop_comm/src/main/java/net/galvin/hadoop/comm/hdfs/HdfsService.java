@@ -17,6 +17,6 @@ public interface HdfsService {
 
     boolean append(String fileName, String content);
 
-    List<String> cat(String fileName);
+    String cat(String fileName);
 
 }

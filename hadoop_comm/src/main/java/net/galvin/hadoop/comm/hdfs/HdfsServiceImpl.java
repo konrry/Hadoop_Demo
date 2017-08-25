@@ -68,27 +68,21 @@ public class HdfsServiceImpl implements HdfsService {
         return success;
     }
 
-    public List<String> cat(String fileName) {
-        List<String> contentList = new ArrayList<String>();
+    public String cat(String fileName) {
+        StringBuilder content = new StringBuilder();
         FSDataInputStream fsDataInputStream = null;
         try {
             fsDataInputStream = HdfsFactory.get().open(new Path(fileName));
-            StringBuilder line = new StringBuilder();
-            while (true){
-                char c = fsDataInputStream.readChar();
-                Logging.info("===>"+c);
-                if('\n' == c){
-                    contentList.add(line.toString());
-                    line = new StringBuilder();
-                }else {
-                    line.append(c);
-                }
+            int len = 0;
+            byte[] buffer = new byte[4096];
+            while ((len = fsDataInputStream.read(buffer)) != -1) {
+                content.append(new String(buffer,0,len,"UTF-8"));
             }
         } catch (Exception e) {
             Logging.error(e.getMessage());
         }finally {
             IOUtils.closeStream(fsDataInputStream);
         }
-        return contentList;
+        return content.toString();
     }
 }
