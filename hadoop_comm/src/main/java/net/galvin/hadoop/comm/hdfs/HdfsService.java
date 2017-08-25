@@ -13,7 +13,7 @@ public interface HdfsService {
 
     boolean createDir(String DirName);
 
-    Object createFile(String fileName);
+    boolean createFile(String fileName);
 
     boolean append(String fileName, String content);
 

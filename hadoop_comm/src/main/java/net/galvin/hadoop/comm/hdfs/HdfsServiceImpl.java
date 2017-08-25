@@ -42,7 +42,7 @@ public class HdfsServiceImpl implements HdfsService {
         return success;
     }
 
-    public Object createFile(String fileName) {
+    public boolean createFile(String fileName) {
         boolean success = false;
         try {
             HdfsFactory.get().create(new Path(fileName));

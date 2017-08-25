@@ -38,6 +38,31 @@ public class HdfsAction {
     }
 
 
+    @RequestMapping("/createDir")
+    @ResponseBody
+    public Object createDir(HttpServletRequest request, HttpServletResponse response){
+        String dirName = request.getParameter("dirName");
+        boolean success = hdfsService.createDir(dirName);
+        return success;
+    }
+
+    @RequestMapping("/createFile")
+    @ResponseBody
+    public Object createFile(HttpServletRequest request, HttpServletResponse response){
+        String fileName = request.getParameter("fileName");
+        boolean success = hdfsService.createFile(fileName);
+        return success;
+    }
+
+    @RequestMapping("/appendFile")
+    @ResponseBody
+    public Object appendFile(HttpServletRequest request, HttpServletResponse response){
+        String fileName = request.getParameter("fileName");
+        String content = request.getParameter("content");
+        boolean success = hdfsService.append(fileName,content);
+        return success;
+    }
+
     @RequestMapping("/cat")
     @ResponseBody
     public Object cat(HttpServletRequest request, HttpServletResponse response){
