@@ -76,6 +76,7 @@ public class HdfsServiceImpl implements HdfsService {
             StringBuilder line = new StringBuilder();
             while (true){
                 char c = fsDataInputStream.readChar();
+                Logging.info("===>"+c);
                 if('\n' == c){
                     contentList.add(line.toString());
                     line = new StringBuilder();
