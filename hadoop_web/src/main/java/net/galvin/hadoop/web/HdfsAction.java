@@ -24,7 +24,7 @@ public class HdfsAction {
 
     @Autowired
     private HdfsService hdfsService;
-    
+
     @RequestMapping("/listDir")
     @ResponseBody
     public List<String> listDir(HttpServletRequest request, HttpServletResponse response){
@@ -35,6 +35,15 @@ public class HdfsAction {
             fileList.add(fileStatus.toString());
         }
         return fileList;
+    }
+
+
+    @RequestMapping("/cat")
+    @ResponseBody
+    public List<String> cat(HttpServletRequest request, HttpServletResponse response){
+        String fileName = request.getParameter("fileName");
+        List<String> contentList = hdfsService.cat(fileName);
+        return contentList;
     }
 
 }
